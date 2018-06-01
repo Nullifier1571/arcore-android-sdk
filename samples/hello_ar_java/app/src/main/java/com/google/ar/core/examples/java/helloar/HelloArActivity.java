@@ -296,40 +296,6 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
                 }
             }
 
-            if (!isLock) {
-                //在空间上加上几个object
-                anchors.add(session.createAnchor(
-                        frame.getCamera().getDisplayOrientedPose()
-                                .compose(Pose.makeTranslation(0, 0, -1f))
-                                .extractTranslation()));
-
-                anchors.add(session.createAnchor(
-                        frame.getCamera().getDisplayOrientedPose()
-                                .compose(Pose.makeTranslation(-0.5f, 0, -1f))
-                                .extractTranslation()));
-
-                anchors.add(session.createAnchor(
-                        frame.getCamera().getDisplayOrientedPose()
-                                .compose(Pose.makeTranslation(0.5f, 0, -1f))
-                                .extractTranslation()));
-
-                anchors.add(session.createAnchor(
-                        frame.getCamera().getDisplayOrientedPose()
-                                .compose(Pose.makeTranslation(0.f, 0, 1f))
-                                .extractTranslation()));
-
-                anchors.add(session.createAnchor(
-                        frame.getCamera().getDisplayOrientedPose()
-                                .compose(Pose.makeTranslation(0, 0.5f, -1f))
-                                .extractTranslation()));
-
-                anchors.add(session.createAnchor(
-                        frame.getCamera().getDisplayOrientedPose()
-                                .compose(Pose.makeTranslation(0, -0.5f, -1f))
-                                .extractTranslation()));
-                isLock = true;
-            }
-
 
             // Draw background.
             backgroundRenderer.draw(frame);
@@ -376,6 +342,36 @@ public class HelloArActivity extends AppCompatActivity implements GLSurfaceView.
             // Visualize planes.
             planeRenderer.drawPlanes(
                     session.getAllTrackables(Plane.class), camera.getDisplayOrientedPose(), projmtx);
+
+
+            if (!isLock) {
+                //在空间上加上几个object
+                anchors.add(session.createAnchor(
+                        frame.getCamera().getDisplayOrientedPose()
+                                .compose(Pose.makeTranslation(0, 0, -1f))
+                                .extractTranslation()));
+
+                anchors.add(session.createAnchor(
+                        frame.getCamera().getDisplayOrientedPose()
+                                .compose(Pose.makeTranslation(-0.5f, 0, -1f))
+                                .extractTranslation()));
+
+                anchors.add(session.createAnchor(
+                        frame.getCamera().getDisplayOrientedPose()
+                                .compose(Pose.makeTranslation(0.5f, 0, -1f))
+                                .extractTranslation()));
+
+                anchors.add(session.createAnchor(
+                        frame.getCamera().getDisplayOrientedPose()
+                                .compose(Pose.makeTranslation(0.f, 0, 1f))
+                                .extractTranslation()));
+
+                anchors.add(session.createAnchor(
+                        frame.getCamera().getDisplayOrientedPose()
+                                .compose(Pose.makeTranslation(0, 0.5f, -1f))
+                                .extractTranslation()));
+                isLock = true;
+            }
 
             // Visualize anchors created by touch.
             float scaleFactor = 1.0f;
